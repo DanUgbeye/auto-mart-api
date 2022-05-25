@@ -66,7 +66,7 @@ const Profile = () => {
                 setEmail(e.target.value);
               }}
               className=" w-full p-2 outline-none h-12 overflow-hidden "
-              readOnly={!isEditing ? true : false}
+              readOnly={true}
             />
           </fieldset>
 
