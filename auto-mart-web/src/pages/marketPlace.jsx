@@ -3,7 +3,7 @@ import Card from "../components/card";
 import Heading from "../components/heading";
 import Loading from "../layouts/loading";
 
-const Dashboard = () => {
+const MarketPlace = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
@@ -67,4 +67,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default MarketPlace;

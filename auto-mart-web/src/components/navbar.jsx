@@ -13,8 +13,7 @@ const Navbar = ({ extraStyle }) => {
     >
       <div className=" flex flex-col fixed left-10 w-[10rem] ">
         <NavLink
-          to={"/dashboard"}
-          strict="true"
+          to={"/marketplace"}
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
@@ -24,11 +23,11 @@ const Navbar = ({ extraStyle }) => {
           }
         >
           <i className=" fa far fa-rectangle-list mr-4" />
-          Dashboard
+          Market
         </NavLink>
 
         <NavLink
-          to={"/sell"}
+          to={"/advert"}
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
@@ -38,7 +37,7 @@ const Navbar = ({ extraStyle }) => {
           }
         >
           <i className=" fa far fa-money-bill-wave mr-4" />
-          Sell
+          Adverts
         </NavLink>
 
         <NavLink

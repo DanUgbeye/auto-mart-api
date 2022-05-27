@@ -8,30 +8,38 @@ import Login from "./pages/login";
 import SecondaryLayout from "./layouts/secondaryLayout";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
-import Dashboard from "./pages/dashboard";
-import Sell from "./pages/sell";
+import MarketPlace from "./pages/marketPlace";
+import CreateAdvert from "./pages/createAdvert";
 import Buy from "./pages/buy";
 import NotFound from "./pages/notFound";
 import "../src/assets/fontawesome/css/all.min.css";
 import SignUp from "./pages/signup";
+import Adverts from "./layouts/adverts";
+import UserAdverts from "./pages/userAdverts";
+import UserContextProvider from "./contexts/user.context";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route element={<SecondaryLayout />}>
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="sell" element={<Sell />} />
-            <Route path="dashboard/buy/:id" element={<Buy />} />
+      <UserContextProvider>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route element={<SecondaryLayout />}>
+              <Route path="marketplace" element={<MarketPlace />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="advert" element={<Adverts />} >
+                <Route index element={<UserAdverts />} />
+                <Route path="create" element={<CreateAdvert />} />
+              </Route>
+              <Route path="marketplace/buy/:id" element={<Buy />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
