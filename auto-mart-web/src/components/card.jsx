@@ -5,13 +5,13 @@ const Card = ({ car }) => {
   return (
     <Link
       to={`buy/${car.id}`}
-      className=" relative bg-primary-light-60 w-full max-h-[20rem] max-w-md mx-auto h-fit overflow-hidden flex flex-col rounded-md hover:shadow-[0px_0px_25px] hover:scale-105 hover:shadow-gray-600/60 card "
+      className=" relative bg-primary-light-60 w-full max-h-[20rem] max-w-md mx-auto h-fit overflow-hidden flex flex-col rounded-md shadow-[0px_0px_10px] hover:shadow-[0px_0px_25px] hover:scale-105 shadow-gray-600/60 hover:shadow-gray-600/60 card "
     >
       {car.image ? (
         <img
           src={car.image}
           alt={`${car.manufacturer} ${car.model}`}
-          className=" w-full min-h-[10rem]  "
+          className=" w-full min-h-[10rem] aspect-auto "
         />
       ) : (
         <div className=" bg-primary-red-60 w-full min-h-[10rem] "></div>
