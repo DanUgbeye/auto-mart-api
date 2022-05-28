@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
-import Heading from "../components/heading";
 import Loading from "../layouts/loading";
 import API from "../utils/api";
 

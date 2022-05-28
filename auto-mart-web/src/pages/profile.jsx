@@ -19,7 +19,7 @@ const Profile = () => {
 
   function updateUserDetails(e) {
     e.preventDefault();
-
+    setMessage("");
     setIsLoading(true);
     const body = {
       fullName,
@@ -67,17 +67,8 @@ const Profile = () => {
 
   useEffect(() => {
     setUserProfile();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  useEffect(() => {
-    (async function () {
-      if (message === "") {
-        setTimeout(() => {
-          setMessage("");
-        }, 1000);
-      }
-    })();
-  }, [message]);
 
   return (
     <section className=" min-h-[100vh] relative ">

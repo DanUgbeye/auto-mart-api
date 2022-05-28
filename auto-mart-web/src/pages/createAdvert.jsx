@@ -41,8 +41,6 @@ const CreateAdvert = () => {
     price && formData.append("price", price);
     image && formData.append("image", image, image.name);
 
-    // validate data
-
     //make api call
     setIsLoading(true);
     API.createCarAdvert(formData)
@@ -77,9 +75,6 @@ const CreateAdvert = () => {
       {error && (
         <div className=" text-xl font-semibold text-primary-red-60 border-solid border-primary-red-60 border p-4 flex flex-col rounded-md mb-8 max-w-xl min-w-[20rem] mx-auto ">
           {error}
-          {/* <span className="  text-lg font-semibold ">
-            If error persists try to logout and log back in
-          </span> */}
         </div>
       )}
 
