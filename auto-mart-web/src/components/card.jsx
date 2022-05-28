@@ -6,7 +6,7 @@ const Card = ({ car }) => {
     <Link to={`buy/${car.id}`} className=" relative bg-primary-light-60 w-full h-fit overflow-hidden flex flex-col rounded-md hover:shadow-lg hover:shadow-gray-600/30 card ">
         {
             car.image ?
-            <img src={car.image} alt="car" className=" w-full h-[10rem] " /> :
+            <img src={car.image} alt={`${car.manufacturer} ${car.model}`} className=" w-full h-[10rem] " /> :
             <div className=" bg-primary-red-60 w-full h-[10rem] "></div>            
         }
 

@@ -1,11 +1,19 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/user.context";
 
 const Navbar = ({ extraStyle }) => {
+  const { user, saveUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   function logout() {
-    // log user out here
+    saveUser({});
   }
+
+  useEffect(() => {
+    if (Object.keys(user).length === 0) navigate("/", { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <section
@@ -13,8 +21,7 @@ const Navbar = ({ extraStyle }) => {
     >
       <div className=" flex flex-col fixed left-10 w-[10rem] ">
         <NavLink
-          to={"/dashboard"}
-          strict="true"
+          to={"/marketplace"}
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
@@ -24,11 +31,11 @@ const Navbar = ({ extraStyle }) => {
           }
         >
           <i className=" fa far fa-rectangle-list mr-4" />
-          Dashboard
+          Market
         </NavLink>
 
         <NavLink
-          to={"/sell"}
+          to={"/advert"}
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
@@ -38,7 +45,7 @@ const Navbar = ({ extraStyle }) => {
           }
         >
           <i className=" fa far fa-money-bill-wave mr-4" />
-          Sell
+          Adverts
         </NavLink>
 
         <NavLink
@@ -55,7 +62,11 @@ const Navbar = ({ extraStyle }) => {
           Profile
         </NavLink>
 
-        <button className="  mb-8 px-4 py-2 bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40  " onClick={() => logout()}>
+        <button
+          className="  mb-8 px-4 flex items-center py-2 bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40  "
+          onClick={() => logout()}
+        >
+          <i className="fa far fa-sign-out mr-4 " />
           Log out
         </button>
       </div>

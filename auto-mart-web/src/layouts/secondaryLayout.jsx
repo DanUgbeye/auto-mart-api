@@ -4,7 +4,7 @@ import Navbar from "../components/navbar";
 
 const SecondaryLayout = () => {
   return (
-    <section className=" bg-primary-light-30 grid grid-cols-[200px_auto] ">
+    <section className=" bg-primary-light-30 grid grid-cols-[12.5rem_auto] ">
       
       <Navbar extraStyle=" col-start-1 col-end-2 bg-primary-red-60 " />
 

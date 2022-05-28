@@ -4,7 +4,7 @@ const Heading = ({ heading, supportText, extraStyle, headingStyle, supportTextSt
   return (
     <div className={` w-full ${extraStyle} `}>
       <h2 className={` mb-4 ${headingStyle}`}>{heading}</h2>
-      <p className={` text-sm  ${supportTextStyle} `}>{supportText}</p>
+      <p className={` text-lg ${supportTextStyle} `}>{supportText}</p>
       {children}
     </div>
   );
