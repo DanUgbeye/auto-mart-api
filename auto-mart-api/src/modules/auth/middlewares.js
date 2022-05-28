@@ -1,5 +1,6 @@
 const Settings = require("../../utils/settings");
 const TOKEN = require("../../utils/token");
+const RESPONSE = require("../../utils/response");
 
 exports.requiresAuth = async function (req, res, next) {
   try {
@@ -14,7 +15,7 @@ exports.requiresAuth = async function (req, res, next) {
     };
     next();
   } catch (error) {
-    const response = RESPONSE.error(401, "authorization error, login to continue");
+    const response = RESPONSE.error(401, `Authentication error: ${error.message}`);
     res.status(response.code).send(response);
   }
 };

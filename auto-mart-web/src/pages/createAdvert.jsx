@@ -35,7 +35,7 @@ const CreateAdvert = () => {
     e.preventDefault();
     const formData = new FormData();
     model && formData.append("model", model);
-    user._id && formData.append("seller", user.id);
+    user.id && formData.append("seller", user.id);
     manufacturer && formData.append("manufacturer", manufacturer);
     year && formData.append("year", year);
     price && formData.append("price", price);

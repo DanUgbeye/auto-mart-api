@@ -19,6 +19,7 @@ class API {
       .post(path, body)
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }

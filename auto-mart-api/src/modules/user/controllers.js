@@ -54,9 +54,12 @@ async function update(req, res) {
     }
     let existingUser = await USER.get({ _id: id });
     if (!existingUser) {
-      const error = new Error("invalid email");
+      const error = new Error("invalid user ID");
       error.code = 400;
       throw error;
+    }
+    const updatedUser = {
+      fullName: user.fullName,
     }
     if(user.currentPassword || user.newPassword || user.confirmPassword) {
       if(!user.currentPassword || !user.newPassword || !user.confirmPassword) {
@@ -79,12 +82,10 @@ async function update(req, res) {
         error.code = 400;
         throw error;
       }
+      updatedUser.password = user.newPassword;
     }
-    const updatedUser = {
-      fullName: user.fullName,
-      password: user.newPassword
-    }
-    const { _id, fullName, email } = await USER.update(existingUser._id, updatedUser);
+    
+    const { _id, fullName, email } = await USER.update(id, updatedUser);
     const result = {
       id: _id,
       fullName,

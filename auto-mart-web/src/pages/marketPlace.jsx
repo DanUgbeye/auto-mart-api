@@ -17,7 +17,7 @@ const MarketPlace = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError("an error occured, please refresh the page");
+        setError(err.message);
         setIsLoading(false);
       });
   }
@@ -39,9 +39,8 @@ const MarketPlace = () => {
       />
 
       {error && (
-        <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] flex flex-col left-[50%] translate-x-[-50%] rounded-md  max-w-xl min-w-[20rem] ">
+        <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] flex justify-center font-semibold left-[50%] translate-x-[-50%] rounded-md  max-w-xl min-w-[20rem] ">
           {error}
-          <span className="  text-lg font-semibold ">If error persists try to logout and log back in</span>
         </div>
       )}
 

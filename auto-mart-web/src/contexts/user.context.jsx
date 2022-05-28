@@ -18,7 +18,7 @@ const UserContextProvider = (props) => {
   const saveUser = (user) => {
     localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
-    api.setToken(user.token);
+    api.setToken(user ? user.token : "No Token");
   };
 
   return (

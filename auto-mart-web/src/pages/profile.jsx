@@ -42,7 +42,7 @@ const Profile = () => {
     API.updateUser(user.id, body)
       .then((userData) => {
         saveUser({
-          id: userData._id,
+          id: user.id,
           email: userData.email,
           fullName: userData.fullName,
           token: user.token,
@@ -50,8 +50,7 @@ const Profile = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err.message);
-        setError("something went wrong");
+        setError(err.message);
         setIsLoading(false);
       });
     setIsEditing(!isEditing);
@@ -93,11 +92,8 @@ const Profile = () => {
       />
 
       {error && (
-        <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] flex flex-col left-[50%] translate-x-[-50%] rounded-md  max-w-xl min-w-[20rem] ">
+        <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] flex justify-center left-[50%] translate-x-[-50%] rounded-md  max-w-xl min-w-[20rem] ">
           {error}
-          <span className="  text-lg font-semibold ">
-            If error persists try to logout and log back in
-          </span>
         </div>
       )}
 

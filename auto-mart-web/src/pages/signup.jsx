@@ -15,16 +15,20 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const { user, saveUser } = useContext(UserContext);
-  const api = API;
 
   function handleSignUp(e) {
     e.preventDefault();
     setIsLoading(true);
-    api
+    API
       .signup({ email, fullName, password })
-      .then((userData) => {
-        console.log(userData);
-        saveUser(userData);
+      .then(({ _id, email, fullName, token }) => {
+        const data = {
+          id: _id,
+          email,
+          fullName,
+          token
+        }
+        saveUser(data);
       })
       .catch((err) => {
         setError(err.message);
