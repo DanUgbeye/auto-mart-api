@@ -12,15 +12,20 @@ const Login = () => {
   const navigate = useNavigate();
   const { user, saveUser } = useContext(UserContext);
   const [error, setError] = useState("");
-  const api = API;
 
   function handleLogin(e) {
     e.preventDefault();
     setIsLoading(true);
-    api
+    API
       .login({ email, password })
-      .then((userData) => {
-        saveUser(userData);
+      .then(({ _id, email, fullName, token }) => {
+        const data = {
+          id: _id,
+          email,
+          fullName,
+          token
+        }
+        saveUser(data);
       })
       .catch((err) => {
         setError(err.message);

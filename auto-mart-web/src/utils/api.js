@@ -19,6 +19,7 @@ class API {
       .post(path, body)
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -33,6 +34,7 @@ class API {
       .post(path, body)
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -51,6 +53,7 @@ class API {
       })
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -69,6 +72,7 @@ class API {
       })
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -85,8 +89,9 @@ class API {
           authorization: `Bearer ${this.token ? this.token : "no token"}`,
         },
       })
-      .then((res) => res.data.status === "success" && true)
+      .then((res) => (res.data.status === "success" && true))
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -101,6 +106,7 @@ class API {
       .get(path)
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -109,8 +115,8 @@ class API {
     return user;
   }
 
-  async getCarForUser(id, token) {
-    const path = `car/user/${id}`;
+  async getCarsForUser(id, token) {
+    const path = `cars/user/${id}`;
     const user = this.axios
       .get(path, {
         headers: {
@@ -119,6 +125,7 @@ class API {
       })
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -137,6 +144,7 @@ class API {
       })
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -155,6 +163,7 @@ class API {
       })
       .then((res) => res.data.data)
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }
@@ -171,8 +180,9 @@ class API {
           authorization: `Bearer ${this.token ? this.token : "no token"}`,
         },
       })
-      .then((res) => res.data.data)
+      .then((res) => (res.data.status === "success" && true))
       .catch((err) => {
+        if(!err.response.data.status) throw err;
         if (err.response.data.status && err.response.data.status === "error") {
           throw new Error(err.response.data.message);
         }

@@ -1,5 +1,6 @@
 const Settings = require("../../utils/settings");
 const TOKEN = require("../../utils/token");
+const RESPONSE = require("../../utils/response");
 
 exports.requiresAuth = async function (req, res, next) {
   try {
@@ -14,9 +15,8 @@ exports.requiresAuth = async function (req, res, next) {
     };
     next();
   } catch (error) {
-    // redirect to login page
-    let url = new URL(`${Settings.getWEB_URI()}/login`);
-    res.status(301).redirect(url.href);
+    const response = RESPONSE.error(401, `Authentication error: ${error.message}`);
+    res.status(response.code).send(response);
   }
 };
 

@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "../src/assets/fontawesome/css/all.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import SecondaryLayout from "./layouts/secondaryLayout";
 import Home from "./pages/home";
@@ -12,15 +13,15 @@ import MarketPlace from "./pages/marketPlace";
 import CreateAdvert from "./pages/createAdvert";
 import Buy from "./pages/buy";
 import NotFound from "./pages/notFound";
-import "../src/assets/fontawesome/css/all.min.css";
 import SignUp from "./pages/signup";
 import Adverts from "./layouts/adverts";
 import UserAdverts from "./pages/userAdverts";
 import UserContextProvider from "./contexts/user.context";
+import MarketPlaceLayout from "./layouts/marketPlaceLayout";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<App />}>
@@ -28,19 +29,21 @@ ReactDOM.render(
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route element={<SecondaryLayout />}>
-              <Route path="marketplace" element={<MarketPlace />} />
+              <Route path="marketplace" element={<MarketPlaceLayout />}>
+                <Route index element={<MarketPlace />} />
+                <Route path="buy/:id" element={<Buy />} />
+              </Route>
               <Route path="profile" element={<Profile />} />
-              <Route path="advert" element={<Adverts />} >
+              <Route path="advert" element={<Adverts />}>
                 <Route index element={<UserAdverts />} />
                 <Route path="create" element={<CreateAdvert />} />
               </Route>
-              <Route path="marketplace/buy/:id" element={<Buy />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </UserContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -17,7 +17,7 @@ const MarketPlace = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setError("an error occured, please refresh the page");
+        setError(err.message);
         setIsLoading(false);
       });
   }
@@ -27,21 +27,10 @@ const MarketPlace = () => {
   }, []);
 
   return (
-    <section className=" relative min-h-[100vh] ">
-      <Heading
-        heading={"Market Place"}
-        supportText={"find cars listed for sale here"}
-        extraStyle={
-          " px-8 py-2 text-primary-red-60 sticky top-0 left-0 right-0 z-[1000] bg-primary-light-30 shadow-black/10 shadow-md relative "
-        }
-        headingStyle={" text-5xl mb-2  "}
-        supportTextStyle={" text-lg "}
-      />
-
+    <>
       {error && (
-        <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] flex flex-col left-[50%] translate-x-[-50%] rounded-md  max-w-xl min-w-[20rem] ">
+        <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] flex justify-center font-semibold left-[50%] translate-x-[-50%] rounded-md  max-w-xl min-w-[20rem] ">
           {error}
-          <span className="  text-lg font-semibold ">If error persists try to logout and log back in</span>
         </div>
       )}
 
@@ -58,7 +47,7 @@ const MarketPlace = () => {
                   year: car.year,
                   manufacturer: car.manufacturer,
                   price: car.price,
-                  image: car.image
+                  image: car.image,
                 }}
                 key={car._id}
               />
@@ -68,9 +57,8 @@ const MarketPlace = () => {
           <div className=" absolute text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 top-[50%] translate-y-[-50%] text-center left-[50%] translate-x-[-50%] rounded-md  max-w-md ">
             No data to display
           </div>
-        ))
-      }
-    </section>
+        ))}
+    </>
   );
 };
 
