@@ -3,6 +3,7 @@ const { validateData } = require("../../utils/validator");
 const CAR = require("./models");
 const { carSchemaValidator } = require("./schema");
 const fs = require("fs");
+const Settings = require("../../utils/settings");
 
 async function get(req, res) {
   try {
@@ -67,7 +68,8 @@ async function create(req, res) {
         error.code = 400;
         throw error;
       }
-      car.image = req.file.path;
+      car.image = `${Settings.getHost()}/${req.file.path}`;
+      car.image = car.image.replace("/public", "");
     }
 
     const data = await validateData(car, carSchemaValidator);
