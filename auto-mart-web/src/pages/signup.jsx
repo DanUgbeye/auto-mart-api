@@ -14,7 +14,7 @@ const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { user, saveUser } = useContext(UserContext);
   const api = API;
 
   function handleSignUp(e) {
@@ -24,7 +24,7 @@ const SignUp = () => {
       .signup({ email, fullName, password })
       .then((userData) => {
         console.log(userData);
-        setUser(userData);
+        saveUser(userData);
       })
       .catch((err) => {
         setError(err.message);

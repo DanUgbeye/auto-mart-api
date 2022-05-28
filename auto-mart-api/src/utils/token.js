@@ -10,7 +10,7 @@ class TOKEN {
   static async verifyToken(token) {
     let response;
     try {
-      response.value = jwt.verify(token, secret, function(error, payload) {
+      jwt.verify(token, secret, function(error, payload) {
         if(error) {
           error.code = 400;
           throw error;
@@ -20,7 +20,6 @@ class TOKEN {
     } catch (error) {
       throw error;
     }
-    console.log("response" + response);
     return response;
   }
 

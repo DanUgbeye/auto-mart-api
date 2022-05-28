@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/user.context";
+import API from "../utils/api";
 
 const CreateAdvert = () => {
   const [model, setModel] = useState("");
@@ -7,14 +9,16 @@ const CreateAdvert = () => {
   const [year, setYear] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState();
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const {user} = useContext(UserContext);
   function handleImageChange(e) {
     if (e.target.files && e.target.files.length > 0) {
       if (e.target.files.length > 1) {
         // throw error that files cannot be more than one
       }
       setImage(e.target.files[0]);
-      console.log(e.target.files[0]);
     }
   }
 
@@ -28,18 +32,29 @@ const CreateAdvert = () => {
 
   function createNewAdvert(e) {
     e.preventDefault();
-    const body = {
-      model,
-      manufacturer,
-      year,
-      price,
-      image,
-    };
+    const formData = new FormData();
+    model && formData.append("model", model);
+    user._id && formData.append("seller", user._id);
+    manufacturer && formData.append("manufacturer", manufacturer);
+    year && formData.append("year", year);
+    price && formData.append("price", price);
+    image && formData.append("image", image, image.name);
+
     // validate data
 
     //make api call
-
-    resetValues();
+    setIsLoading(true);
+    API.createCarAdvert(formData)
+      .then((carData) => {
+        setIsLoading(false);
+        resetValues();
+        navigate("/advert", { replace: true });
+      })
+      .catch((err) => {
+        setError("an error occured!");
+        console.log(err);
+        setIsLoading(false);
+      });
   }
 
   return (
@@ -58,7 +73,14 @@ const CreateAdvert = () => {
         </h3>
       </div>
 
-      <form className=" w-full max-w-lg mx-auto lg:max-w-none ">
+      {error && (
+        <div className=" text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 flex flex-col rounded-md mb-8 max-w-xl min-w-[20rem] mx-auto ">
+          {error}
+          <span className="  text-lg font-semibold ">If error persists try to logout and log back in</span>
+        </div>
+      )}
+
+      <form onSubmit={(e) => createNewAdvert(e)} className=" w-full max-w-lg mx-auto lg:max-w-none ">
         <div className=" grid grid-cols-1 lg:grid-cols-2 lg:gap-8 md:mx-8 lg:mx-12 justify-center ">
           <div className="w-full">
             <fieldset className=" relative mb-8 flex justify-center flex-col ">
@@ -157,10 +179,7 @@ const CreateAdvert = () => {
           </div>
         </div>
 
-        <button
-          className=" w-[7rem] mx-auto flex justify-center items-center gap-2 py-2 h-12 bg-primary-red-60 hover:bg-primary-red-90 text-white rounded-md text-base-blue text-lg tracking-wider hover:tracking-widest "
-          onClick={(e) => createNewAdvert(e)}
-        >
+        <button className=" w-[7rem] mx-auto flex justify-center items-center gap-2 py-2 h-12 bg-primary-red-60 hover:bg-primary-red-90 text-white rounded-md text-base-blue text-lg tracking-wider hover:tracking-widest ">
           <i className=" fa far fa-save text-xl " />
           create
         </button>

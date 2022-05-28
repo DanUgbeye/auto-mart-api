@@ -10,7 +10,7 @@ const Login = () => {
   const [pwHidden, setPwHidden] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
+  const { user, saveUser } = useContext(UserContext);
   const [error, setError] = useState("");
   const api = API;
 
@@ -20,7 +20,7 @@ const Login = () => {
     api
       .login({ email, password })
       .then((userData) => {
-        setUser(userData);
+        saveUser(userData);
       })
       .catch((err) => {
         setError(err.message);

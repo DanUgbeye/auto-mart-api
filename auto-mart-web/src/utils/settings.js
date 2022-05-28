@@ -8,7 +8,9 @@ class Settings {
     static getBaseURL() {
         return "http://localhost:3000";
     }
-    
+    static getApiURL() {
+        return "http://localhost:5000";
+    }
 }
 export default Settings;
 

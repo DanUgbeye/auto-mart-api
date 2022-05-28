@@ -1,13 +1,13 @@
 const { requiresAuth } = require("../auth/middlewares");
 const { update, deleteUser, create, get } = require("./controllers");
+const Router = require("express").Router();
 
-const UserRouter = require("express").Router();
-
-UserRouter.get("/:id", get);
-UserRouter.post("/", create);
-
-UserRouter.use(requiresAuth);
-UserRouter.patch("/:id", update);
-UserRouter.delete("/:id", deleteUser);
+const UserRouter = (app) => {
+  Router.get("/user/:id", get);
+  Router.post("/user/", create);
+  Router.patch("/user/:id", requiresAuth, update);
+  Router.delete("/user/:id", requiresAuth, deleteUser);
+  app.use(Router);
+};
 
 module.exports = UserRouter;

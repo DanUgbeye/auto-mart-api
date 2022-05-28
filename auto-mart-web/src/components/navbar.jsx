@@ -1,11 +1,19 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/user.context";
 
 const Navbar = ({ extraStyle }) => {
+  const { user, saveUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   function logout() {
-    // log user out here
+    saveUser({});
   }
+
+  useEffect(() => {
+    if (Object.keys(user).length === 0) navigate("/", { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <section
@@ -54,7 +62,11 @@ const Navbar = ({ extraStyle }) => {
           Profile
         </NavLink>
 
-        <button className="  mb-8 px-4 py-2 bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40  " onClick={() => logout()}>
+        <button
+          className="  mb-8 px-4 flex items-center py-2 bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40  "
+          onClick={() => logout()}
+        >
+          <i className="fa far fa-sign-out mr-4 " />
           Log out
         </button>
       </div>

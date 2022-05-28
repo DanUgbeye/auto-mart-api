@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <main className=" bg-primary-light-30 text-primary-red-60 min-h-[100vh] h-fit flex flex-col relative ">
       <header className=" flex justify-between px-4 py-4 items-center relative ">
-        <h1 className=" text-3xl font-[serif] ">
+        <h1 className=" text-2xl font-bold  ">
            <span className=" ">Auto </span>Mart
         </h1>
       </header>
@@ -19,20 +19,20 @@ const Home = () => {
             "Buy and sell automobiles on your device. We offer deliveries anywhere in the world, Literally!"
           }
           extraStyle={"max-w-md w-full order-2 lg:order-1 "}
-          headingStyle={"text-4xl lg:text-5xl text-left "}
-          supportTextStyle={"text-left text-primary-red-60 text-xl"}
+          headingStyle={"text-4xl lg:text-5xl text-left font-bold "}
+          supportTextStyle={"text-left text-[#827C90] text-xl"}
         >
           <div className=" flex gap-8 mt-8 ">
             <Link
               to="/signup"
-              className=" px-4 py-2 text-lg grid place-items-center bg-primary-red-60 rounded-md tracking-widest text-white hover:bg-primary-red-90 "
+              className=" px-4 py-2 text-lg flex justify-center items-center bg-primary-red-60 rounded-md tracking-widest text-white hover:bg-primary-red-90 "
             >
               SIGN UP
             </Link>
             
             <Link
               to="/login"
-              className=" px-4 py-2 text-lg grid place-items-center rounded-md tracking-widest border-solid border border-primary-red-60 hover:border-primary-red-90 hover:text-primary-red-90 "
+              className=" px-4 py-2 text-lg flex justify-center items-center rounded-md tracking-widest border-solid border border-primary-red-60 hover:border-primary-red-90 hover:text-primary-red-90 "
             >
               LOGIN
             </Link>
