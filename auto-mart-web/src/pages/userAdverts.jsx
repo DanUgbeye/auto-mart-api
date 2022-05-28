@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Card from "../components/card";
 
 const UserAdverts = () => {
+
+  
   return (
     <div className=" mt-8 mx-8 ">
       <div className=" flex gap-12 items-center mb-8 ">

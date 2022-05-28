@@ -9,10 +9,11 @@ const CreateAdvert = () => {
   const [year, setYear] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
+
   function handleImageChange(e) {
     if (e.target.files && e.target.files.length > 0) {
       if (e.target.files.length > 1) {
@@ -34,7 +35,7 @@ const CreateAdvert = () => {
     e.preventDefault();
     const formData = new FormData();
     model && formData.append("model", model);
-    user._id && formData.append("seller", user._id);
+    user._id && formData.append("seller", user.id);
     manufacturer && formData.append("manufacturer", manufacturer);
     year && formData.append("year", year);
     price && formData.append("price", price);
@@ -51,7 +52,7 @@ const CreateAdvert = () => {
         navigate("/advert", { replace: true });
       })
       .catch((err) => {
-        setError("an error occured!");
+        setError(err.message);
         console.log(err);
         setIsLoading(false);
       });
@@ -74,13 +75,18 @@ const CreateAdvert = () => {
       </div>
 
       {error && (
-        <div className=" text-2xl text-primary-red-60 border-solid border-primary-red-60 border p-4 flex flex-col rounded-md mb-8 max-w-xl min-w-[20rem] mx-auto ">
+        <div className=" text-xl font-semibold text-primary-red-60 border-solid border-primary-red-60 border p-4 flex flex-col rounded-md mb-8 max-w-xl min-w-[20rem] mx-auto ">
           {error}
-          <span className="  text-lg font-semibold ">If error persists try to logout and log back in</span>
+          {/* <span className="  text-lg font-semibold ">
+            If error persists try to logout and log back in
+          </span> */}
         </div>
       )}
 
-      <form onSubmit={(e) => createNewAdvert(e)} className=" w-full max-w-lg mx-auto lg:max-w-none ">
+      <form
+        onSubmit={(e) => createNewAdvert(e)}
+        className=" w-full max-w-lg mx-auto lg:max-w-none "
+      >
         <div className=" grid grid-cols-1 lg:grid-cols-2 lg:gap-8 md:mx-8 lg:mx-12 justify-center ">
           <div className="w-full">
             <fieldset className=" relative mb-8 flex justify-center flex-col ">
@@ -180,8 +186,14 @@ const CreateAdvert = () => {
         </div>
 
         <button className=" w-[7rem] mx-auto flex justify-center items-center gap-2 py-2 h-12 bg-primary-red-60 hover:bg-primary-red-90 text-white rounded-md text-base-blue text-lg tracking-wider hover:tracking-widest ">
-          <i className=" fa far fa-save text-xl " />
-          create
+          {!isLoading ? (
+            <>
+              <i className=" fa far fa-save text-xl " />
+              <span className="">create</span>
+            </>
+          ) : (
+            <i className=" fa fal fa-spinner-third fa-spin speed fa-1x fa-fw " />
+          )}
         </button>
       </form>
     </div>

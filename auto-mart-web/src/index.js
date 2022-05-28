@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import SecondaryLayout from "./layouts/secondaryLayout";
 import Home from "./pages/home";
@@ -20,7 +20,7 @@ import UserContextProvider from "./contexts/user.context";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<App />}>
@@ -40,7 +40,7 @@ ReactDOM.render(
           </Route>
         </Routes>
       </UserContextProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

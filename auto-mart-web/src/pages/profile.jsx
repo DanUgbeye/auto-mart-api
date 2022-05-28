@@ -19,12 +19,12 @@ const Profile = () => {
 
   function updateUserDetails(e) {
     e.preventDefault();
-   
+
     setIsLoading(true);
     const body = {
       fullName,
     };
-    if(currentPassword || newPassword || confirmPassword) {
+    if (currentPassword || newPassword || confirmPassword) {
       if (currentPassword && newPassword && confirmPassword) {
         if (confirmPassword !== newPassword) {
           setMessage("passwords must be equal");
@@ -41,7 +41,12 @@ const Profile = () => {
     }
     API.updateUser(user.id, body)
       .then((userData) => {
-        saveUser({ ...userData, token: user.token });
+        saveUser({
+          id: userData._id,
+          email: userData.email,
+          fullName: userData.fullName,
+          token: user.token,
+        });
         setIsLoading(false);
       })
       .catch((err) => {
@@ -49,7 +54,7 @@ const Profile = () => {
         setError("something went wrong");
         setIsLoading(false);
       });
-      setIsEditing(!isEditing);
+    setIsEditing(!isEditing);
   }
 
   function setUserProfile() {
@@ -66,13 +71,13 @@ const Profile = () => {
   }, [user]);
 
   useEffect(() => {
-    (async function() {
-      if(message === "") {
+    (async function () {
+      if (message === "") {
         setTimeout(() => {
-          setMessage("")
+          setMessage("");
         }, 1000);
       }
-    })()
+    })();
   }, [message]);
 
   return (
@@ -101,7 +106,6 @@ const Profile = () => {
           <Loading />
         ) : (
           <div className=" my-12 mx-4 ">
-            
             <div className=" w-full max-w-lg mb-6 mx-auto ">
               <button
                 className={` flex gap-2 bg-primary-red-60 hover:bg-primary-red-90 py-2 w-[5rem] rounded-md text-primary-light-30 justify-center items-center ml-auto text-lg tracking-wider hover:tracking-widest ${
