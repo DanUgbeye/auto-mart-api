@@ -71,7 +71,7 @@ const SignUp = () => {
               onChange={(e) => {
                 setFullName(e.target.value);
               }}
-              className=" w-full p-2 pl-12 outline-none h-12 overflow-hidden "
+              className=" w-full p-2 pl-12 outline-none h-[48px] overflow-hidden "
               placeholder="full name"
             />
             <i className="fa-user fas absolute text-lg left-4 top-[50%] translate-y-[-50%] pointer-events-none " />
@@ -86,7 +86,7 @@ const SignUp = () => {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              className=" w-full p-2 pl-12 outline-none h-12 overflow-hidden "
+              className=" w-full p-2 pl-12 outline-none h-[48px] overflow-hidden "
               placeholder="email"
             />
             <i className="fa-user fas absolute text-lg left-4 top-[50%] translate-y-[-50%] pointer-events-none " />
@@ -101,7 +101,7 @@ const SignUp = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              className=" w-full  p-2 pl-12 outline-none h-12 overflow-hidden border-b "
+              className=" w-full  p-2 pl-12 outline-none h-[48px] overflow-hidden border-b "
               placeholder="password"
             />
             {password && (
@@ -124,7 +124,7 @@ const SignUp = () => {
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
               }}
-              className=" w-full  p-2 pl-12 outline-none h-12 overflow-hidden border-b "
+              className=" w-full  p-2 pl-12 outline-none h-[48px] overflow-hidden border-b "
               placeholder="confirm password"
             />
             {confirmPassword && (
@@ -139,7 +139,7 @@ const SignUp = () => {
           </fieldset>
 
           <button
-            className=" w-full h-12 bg-primary-red-60 hover:bg-primary-red-60/60 text-white rounded-md text-base-blue text-lg tracking-wider hover:tracking-widest "
+            className=" w-full h-[48px] bg-primary-red-60 hover:bg-primary-red-60/60 text-white rounded-md text-base-blue text-lg tracking-wider hover:tracking-widest "
             onClick={(e) => handleSignUp(e)}
             disabled={isLoading}
           >
