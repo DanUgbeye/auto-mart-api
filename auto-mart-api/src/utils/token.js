@@ -4,7 +4,7 @@ const secret = Settings.getTokenSecret();
 
 class TOKEN {
   static async createToken({ email, id }) {
-    return jwt.sign({ email, id }, secret, { expiresIn: "10m" });
+    return jwt.sign({ email, id }, secret, { expiresIn: "1h" });
   }
 
   static async verifyToken(token) {
