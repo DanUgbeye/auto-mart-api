@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/auto-mart/static/css/main.1c484a63.css",
-    "main.js": "/auto-mart/static/js/main.c20fb761.js",
+    "main.css": "/auto-mart/static/css/main.254d6e03.css",
+    "main.js": "/auto-mart/static/js/main.0a8fd043.js",
     "static/js/787.44809902.chunk.js": "/auto-mart/static/js/787.44809902.chunk.js",
     "static/media/fa-duotone-900.ttf": "/auto-mart/static/media/fa-duotone-900.0f2e11ce9677158aeab0.ttf",
     "static/media/fa-thin-100.ttf": "/auto-mart/static/media/fa-thin-100.68dbc01fde3867384907.ttf",
@@ -19,12 +19,12 @@
     "static/media/fa-v4compatibility.ttf": "/auto-mart/static/media/fa-v4compatibility.cd0fdf1f864652991c5e.ttf",
     "static/media/fa-v4compatibility.woff2": "/auto-mart/static/media/fa-v4compatibility.f2ff997b674f095c0aa2.woff2",
     "index.html": "/auto-mart/index.html",
-    "main.1c484a63.css.map": "/auto-mart/static/css/main.1c484a63.css.map",
-    "main.c20fb761.js.map": "/auto-mart/static/js/main.c20fb761.js.map",
+    "main.254d6e03.css.map": "/auto-mart/static/css/main.254d6e03.css.map",
+    "main.0a8fd043.js.map": "/auto-mart/static/js/main.0a8fd043.js.map",
     "787.44809902.chunk.js.map": "/auto-mart/static/js/787.44809902.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1c484a63.css",
-    "static/js/main.c20fb761.js"
+    "static/css/main.254d6e03.css",
+    "static/js/main.0a8fd043.js"
   ]
 }
