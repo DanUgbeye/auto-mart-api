@@ -8,11 +8,11 @@ const Home = () => {
     <main className=" bg-primary-light-30 text-primary-red-60 min-h-[100vh] h-fit flex flex-col relative ">
       <header className=" flex justify-between px-4 py-4 items-center relative ">
         <h1 className=" text-2xl font-bold  ">
-           <span className=" ">Auto </span>Mart
+           Auto Mart
         </h1>
       </header>
 
-      <section className=" absolute mx-8 mt-12 left-0 right-0 top-[50%] translate-y-[-50%] flex flex-col lg:flex-row gap-8 justify-center items-center ">
+      <section className=" absolute mx-8 mt-12 left-0 right-0 top-[50%] translate-y-[-50%] flex flex-col lg:flex-row gap-16 lg:gap-8 justify-center items-center ">
         <Heading
           heading={"The trusted platform for buying and selling cars"}
           supportText={
