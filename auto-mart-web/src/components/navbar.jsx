@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
 
-const Navbar = ({ extraStyle }) => {
+const Navbar = ({ extraStyle, navState, setNavExpanded }) => {
   const { user, saveUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -17,19 +17,30 @@ const Navbar = ({ extraStyle }) => {
 
   return (
     <section
-      className={` bg-primary-red-60 min-h-[100vh] h-full pl-4 relative ${extraStyle}`}
+      className={` sm:bg-primary-red-60 pl-4 z-[1001] sm:relative  transition-all duration-300 ${extraStyle} ${navState ? "translate-x-0" : "translate-x-[-100%] sm:translate-x-0"}`}
     >
-      <Link to="/" className={" text-2xl font-bold text-white my-8 justify-self-center flex w-fit ml-6  "}>Auto Mart</Link>
-      <div className=" flex flex-col pt-[10rem] fixed left-10 w-[10rem] ">
+      <div className=" w-fit justify-center ml-6 my-8 hidden sm:flex ">
+        <Link
+          to="/"
+          className={
+            " text-2xl font-bold text-white w-fit "
+          }
+        >
+          Auto Mart
+        </Link>
+      </div>
+
+      <div className="  sm:h-fit bg-primary-red-60 sm:bg-transparent flex flex-col pt-[10rem] sm:fixed left-10 w-[10rem] ">
         <NavLink
           to={"/marketplace"}
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
-                ? "text-primary-red-60 bg-primary-light-30 rounded-l-lg font-semibold "
+                ? "text-primary-red-60 bg-primary-light-30 rounded-lg sm:rounded-l-lg font-semibold "
                 : " bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40 "
             }  `
           }
+          onClick={()=>setNavExpanded(false)}
         >
           <i className=" fa far fa-rectangle-list mr-4" />
           Market
@@ -40,10 +51,11 @@ const Navbar = ({ extraStyle }) => {
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
-                ? "text-primary-red-60 bg-primary-light-30 rounded-l-lg font-semibold "
+                ? "text-primary-red-60 bg-primary-light-30 rounded-lg sm:rounded-l-lg font-semibold "
                 : " bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40 "
             }  `
           }
+          onClick={()=>setNavExpanded(false)}
         >
           <i className=" fa far fa-money-bill-wave mr-4" />
           Adverts
@@ -54,10 +66,11 @@ const Navbar = ({ extraStyle }) => {
           className={({ isActive }) =>
             `  mb-8 px-4 py-2  ${
               isActive
-                ? "text-primary-red-60 bg-primary-light-30 rounded-l-lg font-semibold "
+                ? "text-primary-red-60 bg-primary-light-30 rounded-lg sm:rounded-l-lg font-semibold "
                 : " bg-primary-red-30 text-primary-light-30 rounded-lg mr-2 hover:bg-white/40 "
             }  `
           }
+          onClick={()=>setNavExpanded(false)}
         >
           <i className=" fa fas fa-user mr-4" />
           Profile
