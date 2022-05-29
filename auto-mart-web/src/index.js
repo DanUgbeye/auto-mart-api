@@ -4,7 +4,7 @@ import "./index.css";
 import "../src/assets/fontawesome/css/all.min.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import SecondaryLayout from "./layouts/secondaryLayout";
 import Home from "./pages/home";
@@ -21,7 +21,7 @@ import MarketPlaceLayout from "./layouts/marketPlaceLayout";
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<App />}>
@@ -43,7 +43,7 @@ ReactDOM.render(
           </Route>
         </Routes>
       </UserContextProvider>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
