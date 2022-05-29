@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../contexts/user.context";
 
 const Navbar = ({ extraStyle }) => {
@@ -17,9 +17,10 @@ const Navbar = ({ extraStyle }) => {
 
   return (
     <section
-      className={` bg-primary-red-60 min-h-[100vh] h-full pl-4 pt-[100%] relative ${extraStyle}`}
+      className={` bg-primary-red-60 min-h-[100vh] h-full pl-4 relative ${extraStyle}`}
     >
-      <div className=" flex flex-col fixed left-10 w-[10rem] ">
+      <Link to="/" className={" text-2xl font-bold text-white my-8 justify-self-center flex w-fit ml-6  "}>Auto Mart</Link>
+      <div className=" flex flex-col pt-[10rem] fixed left-10 w-[10rem] ">
         <NavLink
           to={"/marketplace"}
           className={({ isActive }) =>
