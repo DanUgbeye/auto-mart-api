@@ -9,7 +9,7 @@ class Settings {
         return "http://localhost:3000";
     }
     static getApiURL() {
-        return "http://localhost:5000";
+        return "https://auto-mart-server1.herokuapp.com/";
     }
 }
 export default Settings;
