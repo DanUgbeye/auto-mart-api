@@ -1,6 +1,5 @@
 {
   "name": "auto-mart-web",
-  "homepage": "https://danugbeye.github.io/auto-mart/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
