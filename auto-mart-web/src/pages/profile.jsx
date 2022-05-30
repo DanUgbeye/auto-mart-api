@@ -71,14 +71,14 @@ const Profile = () => {
   }, [user]);
 
   return (
-    <section className=" min-h-[100vh] relative ">
+    <section className="  min-h-[calc(100vh-3rem)] sm:min-h-[100vh] relative ">
       <Heading
         heading={"Your Profile"}
         supportText={"your auto mart profile details"}
         extraStyle={
           " px-8 py-2 text-primary-red-60 sticky top-0 left-0 right-0 z-[1000] bg-primary-light-30 shadow-black/10 shadow-md relative "
         }
-        headingStyle={" text-5xl mb-2  "}
+        headingStyle={" text-4xl mb-2  "}
         supportTextStyle={" text-lg "}
       />
 
@@ -95,7 +95,7 @@ const Profile = () => {
           <div className=" my-12 mx-4 ">
             <div className=" w-full max-w-lg mb-6 mx-auto ">
               <button
-                className={` flex gap-2 bg-primary-red-60 hover:bg-primary-red-90 py-2 w-[5rem] rounded-md text-primary-light-30 justify-center items-center ml-auto text-lg tracking-wider hover:tracking-widest ${
+                className={` flex gap-2 bg-primary-red-60 hover:bg-primary-red-90 p-2 w-[5rem] rounded-md text-primary-light-30 justify-center items-center ml-auto text-lg tracking-wider hover:tracking-widest ${
                   !isEditing ? "visible" : "invisible"
                 } `}
                 onClick={() => setIsEditing(!isEditing)}

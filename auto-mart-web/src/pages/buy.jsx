@@ -38,7 +38,7 @@ const Buy = () => {
       )}
 
       <div className=" relative mb-8">
-      <Link
+        <Link
           to="/marketplace"
           className={` relative left-0 z-[900] flex gap-2 w-fit min-w-[6rem] text-xl hover:text-primary-red-90 py-2 h-12 rounded-md text-primary-red-60 justify-center items-center tracking-wider px-2 `}
         >
@@ -60,7 +60,7 @@ const Buy = () => {
                   className=" w-full min-h-[15rem] h-fit max-w-md mx-auto md:mx-0 "
                 />
               ) : (
-                <div className=" bg-primary-red-60 w-full min-h-[15rem] h-fit max-w-md"></div>
+                <div className=" bg-primary-red-60 w-full min-w-[20rem] min-h-[15rem] h-fit max-w-md"></div>
               )}
 
               <div
@@ -93,15 +93,16 @@ const Buy = () => {
               </div>
             </div>
             <div className=" my-8 ">
-              { user.id !== car.seller ? (
+              {user.id !== car.seller ? (
                 <button
-                  className=" px-4 py-3 text-2xl flex justify-center items-center bg-primary-red-60 rounded-xl tracking-widest  text-white hover:bg-primary-red-90 "
-                  // onClick={() => deleteAdvert(car._id)}
+                  className=" px-4 py-2 text-xl flex justify-center items-center bg-primary-red-60 rounded-md tracking-widest text-white hover:bg-primary-red-90 "
                 >
                   Buy Car
                 </button>
-              ): (
-                <div className=" text-primary-red-90 text-center text-lg font-semibold tracking-wider ">* You posted this advert</div>
+              ) : (
+                <div className=" text-primary-red-90 text-center text-lg font-semibold tracking-wider ">
+                  * You posted this advert
+                </div>
               )}
             </div>
           </div>

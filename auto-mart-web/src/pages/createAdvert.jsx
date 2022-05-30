@@ -51,7 +51,6 @@ const CreateAdvert = () => {
       })
       .catch((err) => {
         setError(err.message);
-        console.log(err);
         setIsLoading(false);
       });
   }
@@ -82,8 +81,8 @@ const CreateAdvert = () => {
         onSubmit={(e) => createNewAdvert(e)}
         className=" w-full max-w-lg mx-auto lg:max-w-none "
       >
-        <div className=" grid grid-cols-1 lg:grid-cols-2 lg:gap-8 md:mx-8 lg:mx-12 justify-center ">
-          <div className="w-full">
+        <div className=" flex flex-col lg:flex-row lg:gap-8 md:mx-8 lg:mx-12 justify-center ">
+          <div className="w-full max-w-md mx-auto ">
             <fieldset className=" relative mb-8 flex justify-center flex-col ">
               <label className=" w-[11rem] text-lg  ">Model</label>
               <input
