@@ -13,7 +13,7 @@ class CAR {
     //gets a car using car id
     const car = await carModel.findOne({ _id: id });
     if (!car) {
-      const error = new Error("invalid car details");
+      const error = new Error("invalid car id");
       error.code = 400;
       throw error;
     }
@@ -30,7 +30,11 @@ class CAR {
 
   static async delete(id) {
     const car = await carModel.findByIdAndDelete({ _id: id });
-    if (!car) throw new Error("invalid car details");
+    if (!car) {
+      const error = new Error("invalid car id");
+      error.code = 400;
+      throw error;
+    }    
     return car;
   }
 }

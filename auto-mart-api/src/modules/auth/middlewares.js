@@ -5,9 +5,9 @@ const RESPONSE = require("../../utils/response");
 exports.requiresAuth = async function (req, res, next) {
   try {
     const { authorization } = req.headers;
-    if(!authorization) throw Error("no authorization found");
+    if(!authorization) throw Error("authorization not found");
     const token = authorization.split(" ")[1];
-    if(!token) throw Error("no authorization token");
+    if(!token) throw Error("authorization token not found");
     const user = await TOKEN.verifyToken(token);
     req.auth = {
       isAuthenticated: true,

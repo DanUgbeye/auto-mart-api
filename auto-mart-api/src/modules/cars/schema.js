@@ -7,7 +7,10 @@ exports.carSchema = new Schema({
   manufacturer: String,
   year: Number,
   price: Number,
-  image: String
+  image: {
+    path: String,
+    filename: String
+  }
 });
 
 exports.carSchemaValidator = Joi.object().keys({
@@ -22,6 +25,9 @@ exports.carSchemaValidator = Joi.object().keys({
 
   year: Joi.number().required(),
 
-  image: Joi.string()
+  image: Joi.object().keys({
+    path: Joi.string().required(),
+    filename: Joi.string().required()
+  })
 
 });
