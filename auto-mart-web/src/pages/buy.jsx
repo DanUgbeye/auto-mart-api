@@ -55,7 +55,7 @@ const Buy = () => {
             <div className=" flex flex-col md:flex-row gap-8 ">
               {car.image ? (
                 <img
-                  src={car.image}
+                  src={car.image.path}
                   alt={`${car.manufacturer} ${car.model}`}
                   className=" w-full min-h-[15rem] h-fit max-w-md mx-auto md:mx-0 "
                 />

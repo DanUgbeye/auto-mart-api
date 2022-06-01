@@ -9,7 +9,7 @@ const Card = ({ car }) => {
     >
       {car.image ? (
         <img
-          src={car.image}
+          src={car.image.path}
           alt={`${car.manufacturer} ${car.model}`}
           className=" w-full min-h-[10rem] aspect-auto "
         />

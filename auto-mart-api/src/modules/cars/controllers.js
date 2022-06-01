@@ -4,6 +4,7 @@ const CAR = require("./models");
 const { carSchemaValidator } = require("./schema");
 const fs = require("fs");
 const Settings = require("../../utils/settings");
+const {cloudinary} = require("../../utils/cloudinary");
 
 async function get(req, res) {
   try {
@@ -68,8 +69,10 @@ async function create(req, res) {
         error.code = 400;
         throw error;
       }
-      car.image = `${Settings.getHost()}/${req.file.path}`;
-      car.image = car.image.replace("/public", "");
+      car.image = {
+        path: req.file.path,
+        filename: req.file.filename
+      };
     }
 
     const data = await validateData(car, carSchemaValidator);
@@ -85,14 +88,15 @@ async function create(req, res) {
     return;
   } catch (error) {
     if (req.file) {
-      fs.unlink(req.file.path, (error) => {
-        if (error) {
-          //if an error occurs when deleting the file
-          const response = RESPONSE.error(500, error.message);
-          res.status(response.code).send(response);
-          return;
-        }
-      });
+      // fs.unlink(req.file.path, (error) => {
+      //   if (error) {
+      //     //if an error occurs when deleting the file
+      //     const response = RESPONSE.error(500, error.message);
+      //     res.status(response.code).send(response);
+      //     return;
+      //   }
+      // });
+      if(!req.fileValidationError) await cloudinary.uploader.destroy(`auto-mart/${req.file.filename}`);
     }
     const response = RESPONSE.error(
       !error.code ? 500 : error.code,
@@ -151,7 +155,15 @@ async function update(req, res) {
 async function deleteCar(req, res) {
   try {
     const id = req.params.id;
-    const result = await CAR.delete(id);
+    let result = await CAR.get(id);
+    if(result.image && result.image.filename) {
+      console.log(result, " : result")
+      const status = await cloudinary.uploader.destroy(result.image.filename);
+      if(status.result !== "ok") {
+        throw new Error("error deleting image");
+      }
+    }
+    await CAR.delete(id);
     const response = RESPONSE.success(200);
     res.status(response.code).send(response);
     return;
